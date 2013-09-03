@@ -1,0 +1,87 @@
+#! /usr/bin/env ruby
+
+#
+# This Agent uses the passenger commands to track the number of running
+# and active passenger processes as well as their memory usage
+#
+
+require "rubygems"
+require "bundler/setup"
+
+require "newrelic_plugin"
+
+module PassengerAgent
+
+  class Agent < NewRelic::Plugin::Agent::Base
+
+    agent_guid "net.theimp.newrelic-plugin.passenger"
+    agent_version "0.0.1"
+    agent_config_options :passenger_status, :passenger_memory_stats
+    agent_human_labels("Passenger") { "Passenger on #{`hostname`}" }
+
+
+
+    def poll_cycle
+      
+
+      #Most of this is copied from https://github.com/barttenbrinke/munin-plugins-rails
+      status = run_command(passenger_status)
+
+      status =~ /max\s+=\s+(\d+)/
+      report_metric "passenger.processes.max", "Processes", $1
+      puts "max.value #{$1}"
+
+      status =~ /count\s+=\s+(\d+)/
+      report_metric "passenger.processes.running", "Processes", $1
+      puts "running.value #{$1}"
+
+      status =~ /active\s+=\s+(\d+)/
+      report_metric "passenger.processes.active", "Processes", $1
+      puts "active.value #{$1}"
+
+      status =~ /Waiting on global queue:\s+(\d+)/
+      report_metric "passenger.queue.waiting", "Requests", $1
+      puts "requests.value #{$1}"
+
+      total_sessions = 0
+      status.scan(/Sessions: (\d+)/).flatten.each { |count| total_sessions += count.to_i }
+      report_metric "passenger.sessions.total", "Sessions", total_sessions
+      puts "sessions.value #{total_sessions}"
+
+
+      stats = run_command(passenger_memory_stats)
+
+      stats =~ /RSS:\s*([\d\.]+)\s*MB\Z/m
+      report_metric "passenger.memory.usage", "Megabyte", $1
+      puts "memory.value #{$1}"
+ 
+    end
+
+    
+    private      
+
+    def run_command(command)
+      result = `#{command}`
+
+      unless $?.success?
+        $stderr.puts "failed executing #{command}"
+        exit 1
+      end
+
+      result
+    end
+
+
+  end
+
+  #
+  # Register this agent with the component.
+  #
+  NewRelic::Plugin::Setup.install_agent :passenger, PassengerAgent
+
+  #
+  # Launch the agent; this never returns.
+  #
+  NewRelic::Plugin::Run.setup_and_run
+
+end
