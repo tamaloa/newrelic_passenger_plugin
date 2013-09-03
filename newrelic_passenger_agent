@@ -75,7 +75,7 @@ module PassengerAgent
       end
 	
       passenger_processes.each do |app, memory_usage|
-        report_metric "passenger.processes.memory_per_app.#{app}.usage", "Megabyte", memory_usage
+        report_metric "passenger.memory.#{app}.usage", "Megabyte", memory_usage
         puts "memory for #{app} is #{memory_usage}"
       end
 
