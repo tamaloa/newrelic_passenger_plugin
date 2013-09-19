@@ -5,8 +5,10 @@
 3. `bundle install --deployment` to get the necessary gems
 4. Copy `config/template_newrelic_plugin.yml` to `config/newrelic_plugin.yml`
 5. Edit `config/newrelic_plugin.yml` and replace "YOUR_LICENSE_KEY_HERE" with your New Relic license key
-6. Run `sudo newrelic_passenger_agent` (passenger-memory-stats needs sudo to get the exact memory values)
-7. Setup monitoring/autostart to keep the agent running continuously
+6. Edit `config/newrelic_plugin.yml` and add the full path to your passenger-status and passenger-memory-stats command
+as well as the version used. Make sure you determine the right version, many systems have several passenger gems/packages installed.
+7. Run `sudo newrelic_passenger_agent` (passenger-memory-stats needs sudo to get the exact memory values)
+8. Setup monitoring/autostart to keep the agent running continuously
 
 ## People to thank
 
