@@ -1,0 +1,30 @@
+------------- Apache processes -------------
+*** WARNING: The Apache executable cannot be found.
+Please set the APXS2 environment variable to your 'apxs2' executable's filename, or set the HTTPD environment variable to your 'httpd' or 'apache2' executable's filename.
+
+
+---------- Nginx processes ----------
+PID    PPID   VMSize   Private  Name
+-------------------------------------
+29035  1      48.5 MB  0.2 MB   nginx: master process /opt/nginx/sbin/nginx -c /opt/nginx/conf/nginx.conf
+29036  29035  49.7 MB  1.4 MB   nginx: worker process
+29037  29035  50.2 MB  1.9 MB   nginx: worker process
+29038  29035  49.7 MB  1.4 MB   nginx: worker process
+29039  29035  49.6 MB  1.3 MB   nginx: worker process
+### Processes: 5
+### Total private dirty RSS: 6.21 MB
+
+
+----- Passenger processes ------
+PID    VMSize    Private   Name
+--------------------------------
+3187   550.0 MB  334.6 MB  Passenger RackApp: /var/rails/canvas/current
+4082   545.5 MB  339.7 MB  Passenger RackApp: /var/rails/canvas/current
+4676   542.5 MB  338.7 MB  Passenger RackApp: /var/rails/canvas/current
+5485   539.7 MB  132.4 MB  Passenger RackApp: /var/rails/canvas/current
+5498   548.4 MB  146.8 MB  Passenger RackApp: /var/rails/canvas/current
+14933  187.0 MB  7.4 MB    PassengerHelperAgent
+29009  23.7 MB   0.3 MB    PassengerWatchdog
+29027  38.8 MB   0.6 MB    PassengerLoggingAgent
+### Processes: 8
+### Total private dirty RSS: 1300.52 MB

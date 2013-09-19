@@ -1,0 +1,31 @@
+----------- General information -----------
+max      = 20
+count    = 9
+active   = 0
+inactive = 9
+Waiting on global queue: 0
+
+----------- Application groups -----------
+/var/www/bex/current:
+  App root: /var/www/bex/current
+  * PID: 28604   Sessions: 0    Processed: 182     Uptime: 1h 31m 7s
+  * PID: 28595   Sessions: 0    Processed: 96      Uptime: 1h 31m 12s
+
+/var/www/dpws/current:
+  App root: /var/www/dpws/current
+  * PID: 1908    Sessions: 0    Processed: 14      Uptime: 100h 8m 13s
+  * PID: 1857    Sessions: 0    Processed: 1       Uptime: 100h 8m 37s
+
+/var/www/ipib/current:
+  App root: /var/www/ipib/current
+  * PID: 19251   Sessions: 1    Processed: 377     Uptime: 4h 59m 45s
+  * PID: 24867   Sessions: 0    Processed: 365     Uptime: 10h 38m 53s
+
+/var/www/keit/current:
+  App root: /var/www/keit/current
+  * PID: 2782    Sessions: 0    Processed: 385     Uptime: 41h 50m 33s
+  * PID: 2027    Sessions: 3    Processed: 61      Uptime: 100h 7m 57s
+
+/var/www/lett/current:
+  App root: /var/www/lett/current
+  * PID: 18660   Sessions: 0    Processed: 143     Uptime: 2h 17m 4s

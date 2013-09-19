@@ -1,0 +1,21 @@
+----------- General information -----------
+Max pool size : 6
+Processes     : 6
+Requests in top-level queue : 1
+
+----------- Application groups -----------
+/var/rails/canvas/current#default:
+  App root: /var/rails/canvas/current
+  Requests in queue: 0
+  * PID   : 31499   Sessions : 1    Processed: 499     Uptime: 24m 6s
+    Memory: 342M    Last used: 0s ago
+  * PID   : 3187    Sessions : 0    Processed: 473     Uptime: 13m 40s
+    Memory: 334M    Last used: 16s ago
+  * PID   : 4082    Sessions : 2    Processed: 367     Uptime: 11m 28s
+    Memory: 339M    Last used: 5s ago
+  * PID   : 4676    Sessions : 0    Processed: 428     Uptime: 9m 58s
+    Memory: 338M    Last used: 17s ago
+  * PID   : 5485    Sessions : 0    Processed: 182     Uptime: 7m 48s
+    Memory: 131M    Last used: 5s ago
+  * PID   : 5498    Sessions : 0    Processed: 256     Uptime: 7m 48s
+    Memory: 146M    Last used: 2s ago

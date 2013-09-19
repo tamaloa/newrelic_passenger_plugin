@@ -1,0 +1,36 @@
+---------- Apache processes ----------
+PID    PPID  VMSize     Private  Name
+--------------------------------------
+1663   1943  90.4 MB    0.0 MB   /usr/sbin/apache2 -k start
+1692   1943  1270.5 MB  6.4 MB   /usr/sbin/apache2 -k start
+1693   1943  1270.9 MB  6.8 MB   /usr/sbin/apache2 -k start
+1943   1     91.0 MB    0.2 MB   /usr/sbin/apache2 -k start
+19120  1943  1268.6 MB  4.6 MB   /usr/sbin/apache2 -k start
+### Processes: 5
+### Total private dirty RSS: 18.04 MB
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes ------
+PID    VMSize    Private   Name
+--------------------------------
+1664   215.8 MB  0.1 MB    PassengerWatchdog
+1667   997.5 MB  3.8 MB    PassengerHelperAgent
+1673   107.6 MB  4.4 MB    Passenger spawn server
+1676   167.5 MB  0.0 MB    PassengerLoggingAgent
+1857   464.2 MB  54.8 MB   Rack: /var/www/dpws/current
+1908   478.2 MB  68.6 MB   Rack: /var/www/dpws/current
+2027   440.8 MB  120.1 MB  Rack: /var/www/keit/current
+2782   490.4 MB  169.1 MB  Rack: /var/www/keit/current
+18660  471.7 MB  101.1 MB  Rack: /var/www/lett/current
+19251  591.2 MB  228.4 MB  Rack: /var/www/ipib/current
+24867  570.8 MB  209.6 MB  Rack: /var/www/ipib/current
+28595  469.0 MB  62.7 MB   Rack: /var/www/bex/current
+28604  407.6 MB  58.1 MB   Rack: /var/www/bex/current
+### Processes: 13
+### Total private dirty RSS: 1080.73 MB
