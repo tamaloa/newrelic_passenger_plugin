@@ -19,7 +19,7 @@ module PassengerAgent
   class Agent < NewRelic::Plugin::Agent::Base
 
     agent_guid "net.theimp.newrelic.passenger"
-    agent_version "0.1.0"
+    agent_version "0.1.1"
     agent_config_options :passenger_status, :passenger_memory_stats, :passenger_version
     agent_human_labels("Passenger") { "Passenger on #{`hostname`}" }
 
@@ -128,7 +128,9 @@ module PassengerAgent
     private      
 
     def run_command(command)
-      return File.read("example_output/#{command.split('/').last}_version-#{passenger_version}")
+      
+      #uncomment to test example_output files
+      #return File.read("example_output/#{command.split('/').last}_version-#{passenger_version}")
 
       result = `#{command}`
 
