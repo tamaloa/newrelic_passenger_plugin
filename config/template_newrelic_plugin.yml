@@ -16,7 +16,8 @@ newrelic:
 # Agent Configuration:
 #
 agents:
-  # Adjust the path to your passenger commands as appropriate
   passenger:
+    # Adjust the path to your passenger commands as appropriate
     passenger_status: '/usr/local/bin/passenger-status'
     passenger_memory_stats: '/usr/local/bin/passenger-memory-stats'
+    passenger_version: 3 #May be 3 or 4

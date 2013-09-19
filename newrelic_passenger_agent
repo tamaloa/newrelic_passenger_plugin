@@ -4,6 +4,8 @@
 # This Agent uses the passenger commands to track the number of running
 # and active passenger processes as well as their memory usage
 #
+# The inital version was mainly based on https://github.com/barttenbrinke/munin-plugins-rails
+#
 
 require "rubygems"
 require "bundler/setup"
@@ -12,73 +14,113 @@ require "newrelic_plugin"
 
 module PassengerAgent
 
+  class ConfigurationError < StandardError ; end
+
   class Agent < NewRelic::Plugin::Agent::Base
 
     agent_guid "net.theimp.newrelic.passenger"
     agent_version "0.0.4"
-    agent_config_options :passenger_status, :passenger_memory_stats
+    agent_config_options :passenger_status, :passenger_memory_stats, :passenger_version
     agent_human_labels("Passenger") { "Passenger on #{`hostname`}" }
 
 
+    #
+    # This method is called on initializing the Agent and should check configuration and select version depending regexes
+    #
+    def setup_metrics
+      valid_passenger_versions = [3, 4]
 
-    def poll_cycle
-      
+      raise ConfigurationError, "passenger_version config variable must be set" unless defined?(passenger_version)
+      raise ConfigurationError, "Passenger version must be one of #{valid_passenger_versions}" unless valid_passenger_versions.include?(passenger_version)
 
-      #Most of this is copied from https://github.com/barttenbrinke/munin-plugins-rails
+
+      @matches = {}
+
+      @matches[:processes_max] = /max\s+=\s+(\d+)/ if passenger_version.eql?(3)
+      #Max pool size : 6
+      @matches[:processes_max] = /Max pool size\s+:\s+(\d+)/ if passenger_version.eql?(4)
+
+
+      @matches[:processes_running] = /count\s+=\s+(\d+)/ if passenger_version.eql?(3)
+      #Processes     : 6
+      @matches[:processes_running] = /Processes\s+:\s+(\d+)/ if passenger_version.eql?(4)
+
+
+      @matches[:queue_waiting] = /Waiting on global queue:\s+(\d+)/ if passenger_version.eql?(3)
+      #Requests in top-level queue : 0
+      @matches[:queue_waiting] = /Requests in top-level queue\s+:\s+(\d+)/ if passenger_version.eql?(4)
+
+    end
+
+    def report_passenger_status
       status = run_command(passenger_status)
 
-      status =~ /max\s+=\s+(\d+)/
+      status =~ @matches[:processes_max]
       report_metric "passenger.processes.max", "Processes", $1
       puts "max.value #{$1}"
 
-      status =~ /count\s+=\s+(\d+)/
+      status =~ @matches[:processes_running]
       report_metric "passenger.processes.running", "Processes", $1
       puts "running.value #{$1}"
 
-      status =~ /active\s+=\s+(\d+)/
-      report_metric "passenger.processes.active", "Processes", $1
-      puts "active.value #{$1}"
 
-      status =~ /Waiting on global queue:\s+(\d+)/
+      if passenger_version.eql?(3)
+        status =~ /active\s+=\s+(\d+)/
+        report_metric "passenger.processes.active", "Processes", $1
+        puts "active.value #{$1}"
+      end
+
+      status =~ @matches[:queue_waiting]
       report_metric "passenger.queue.waiting", "Requests", $1
-      puts "requests.value #{$1}"
+      puts "queue-waiting.value #{$1}"
 
       total_sessions = 0
-      status.scan(/Sessions: (\d+)/).flatten.each { |count| total_sessions += count.to_i }
+      status.scan(/Sessions\s*:\s+(\d+)/).flatten.each { |count| total_sessions += count.to_i }
       report_metric "passenger.sessions.total", "Sessions", total_sessions
       puts "sessions.value #{total_sessions}"
+    end
 
 
+    def report_passenger_memory_stats
       stats = run_command(passenger_memory_stats)
 
       stats =~ /RSS:\s*([\d\.]+)\s*MB\Z/m
       report_metric "passenger.memory.total", "Megabyte", $1
       puts "memory.value #{$1}"
- 
+
       passenger_processes = Hash.new(0)
       passenger_section_found = false
       stats.lines.each do |line|
-	
-	passenger_section_start = /.*----- Passenger processes ------.*/
-	passenger_section_found = true if line.match(passenger_section_start)
-	next unless passenger_section_found
 
-	#PID    VMSize    Private   Name
-        #--------------------------------
-        #7402   418.2 MB  53.9 MB   Rack: /var/www/app/current
-	passenger_process_line = /^(?<pid>\d+)\s*+(?<vm_size>[\d\.]+)\s*MB\s*(?<private>[\d\.]+)\s*MB\s*(?<app>.*)$/
-	match = line.match(passenger_process_line)
+      passenger_section_start = /.*----- Passenger processes ------.*/
+      passenger_section_found = true if line.match(passenger_section_start)
+      next unless passenger_section_found
 
-	next unless match
-	passenger_processes[match[:app]] += match[:private].to_i
+      #PID    VMSize    Private   Name
+      #--------------------------------
+      #7402   418.2 MB  53.9 MB   Rack: /var/www/app/current
+      passenger_process_line = /^(?<pid>\d+)\s*+(?<vm_size>[\d\.]+)\s*MB\s*(?<private>[\d\.]+)\s*MB\s*(?<app>.*)$/
+      match = line.match(passenger_process_line)
+
+      next unless match
+      passenger_processes[match[:app]] += match[:private].to_i
 
       end
-	
+
       passenger_processes.each do |app, memory_usage|
         report_metric "passenger.memory.#{app}", "Megabyte", memory_usage
         puts "memory for #{app} is #{memory_usage}"
       end
 
+
+
+    end
+
+    def poll_cycle
+      
+      report_passenger_status
+
+      report_passenger_memory_stats
 
     end
 
@@ -86,6 +128,8 @@ module PassengerAgent
     private      
 
     def run_command(command)
+      return File.read("example_output/#{command.split('/').last}_version-#{passenger_version}")
+
       result = `#{command}`
 
       unless $?.success?
