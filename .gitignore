@@ -1,1 +1,4 @@
 /config/newrelic_plugin.yml
+/vendor/bundle
+.bundle
+.idea
