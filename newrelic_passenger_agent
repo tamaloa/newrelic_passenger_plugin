@@ -99,11 +99,11 @@ module PassengerAgent
       #PID    VMSize    Private   Name
       #--------------------------------
       #7402   418.2 MB  53.9 MB   Rack: /var/www/app/current
-      passenger_process_line = /^(?<pid>\d+)\s*+(?<vm_size>[\d\.]+)\s*MB\s*(?<private>[\d\.]+)\s*MB\s*(?<app>.*)$/
+      passenger_process_line = /^(\d+)\s*([\d\.]+)\s*MB\s*([\d\.]+)\s*MB\s*(.*)$/
       match = line.match(passenger_process_line)
 
       next unless match
-      passenger_processes[match[:app]] += match[:private].to_i
+      passenger_processes[match[4]] += match[3].to_i
 
       end
 
