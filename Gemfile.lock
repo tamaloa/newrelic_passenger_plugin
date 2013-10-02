@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
@@ -8,9 +8,13 @@ GEM
     newrelic_plugin (1.0.3)
       faraday (>= 0.8.1)
       json
+    rake (10.1.0)
+    test-unit (2.5.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   newrelic_plugin
+  rake
+  test-unit
