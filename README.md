@@ -1,7 +1,7 @@
 ## Introduction
 
 A simple Newrelic agent which collects stats from Phusion Passenger by using the built in status commands.
-[![Build Status](https://travis-ci.org/tamaloa/newrelic_passenger_plugin.png?branch=master)](https://travis-ci.org/tamaloa/newrelic_passenger_plugin.png) tested on all major C ruby versions.
+[![Build Status](https://travis-ci.org/tamaloa/newrelic_passenger_plugin.png?branch=master)](https://travis-ci.org/tamaloa/newrelic_passenger_plugin) tested on all major C ruby versions.
 
 
 ## Passenger Agent Installation
