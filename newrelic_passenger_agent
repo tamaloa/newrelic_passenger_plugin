@@ -22,7 +22,7 @@ module PassengerAgent
   class Agent < NewRelic::Plugin::Agent::Base
 
     agent_guid "net.theimp.newrelic.passenger"
-    agent_version "0.1.2"
+    agent_version "0.2.0"
     agent_config_options :passenger_status, :passenger_memory_stats, :passenger_version
     agent_human_labels("Passenger") { "Passenger on #{`hostname`}" }
 
