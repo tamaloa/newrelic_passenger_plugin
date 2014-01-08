@@ -11,6 +11,10 @@ class PassengerMemoryStatsTest < Test::Unit::TestCase
     @memory_stats_parser_v4 = PassengerMemoryStatsParser.new
     example_output_file = File.join(File.dirname(__FILE__), 'example_output/passenger-memory-stats_version-4')
     @memory_stats_parser_v4.output_to_parse = File.read(example_output_file)
+
+    @memory_stats_parser_v4_0_33 = PassengerMemoryStatsParser.new
+    example_output_file = File.join(File.dirname(__FILE__), 'example_output/passenger-memory-stats_version-4.0.33')
+    @memory_stats_parser_v4_0_33.output_to_parse = File.read(example_output_file)
   end
 
   test "total memory is parsed correctly for Passenger version 3" do
@@ -19,6 +23,10 @@ class PassengerMemoryStatsTest < Test::Unit::TestCase
 
   test "total memory is parsed correctly for Passenger version 4" do
     assert_equal "1300.52", @memory_stats_parser_v4.passenger_memory_total
+  end
+
+  test "total memory is parsed correctly for Passenger version 4.0.33" do
+    assert_equal "1891", @memory_stats_parser_v4_0_33.passenger_memory_total
   end
 
   test "memory per app is parsed correctly for Passenger version 3" do

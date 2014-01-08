@@ -1,0 +1,32 @@
+Version: 4.0.33
+Date   : 2014-01-08 16:37:52 +0100
+
+---------- Apache processes ----------
+PID   PPID  VMSize     Resident  Name
+--------------------------------------
+1724  1     93.4 MB    4.9 MB    /usr/sbin/apache2 -k start
+1733  1724  92.6 MB    2.9 MB    /usr/sbin/apache2 -k start
+1796  1724  1271.4 MB  8.8 MB    /usr/sbin/apache2 -k start
+1797  1724  1271.5 MB  8.8 MB    /usr/sbin/apache2 -k start
+
+
+-------- Nginx processes ---------
+
+
+
+------ Passenger processes ------
+PID    VMSize     Resident  Name
+---------------------------------
+1736   218.3 MB   2.0 MB    PassengerWatchdog
+1744   1019.8 MB  5.9 MB    PassengerHelperAgent
+1754   232.7 MB   4.8 MB    PassengerLoggingAgent
+1958   612.3 MB   126.9 MB  Passenger RackApp: /var/www/app_one/current
+1975   612.4 MB   127.1 MB  Passenger RackApp: /var/www/app_one/current
+2075   613.9 MB   159.1 MB  Passenger RackApp: /var/www/app_two/current
+2086   613.7 MB   152.3 MB  Passenger RackApp: /var/www/app_two/current
+2447   547.3 MB   121.1 MB  Passenger RackApp: /var/www/app_three/current
+11080  806.4 MB   371.0 MB  Passenger RackApp: /var/www/app_four/current
+13020  613.1 MB   232.6 MB  Passenger RackApp: /var/www/app_four/current
+17419  678.3 MB   241.6 MB  Passenger RackApp: /var/www/app_four/current
+22105  676.1 MB   221.3 MB  Passenger RackApp: /var/www/app_four/current
+28157  612.3 MB   130.7 MB  Passenger RackApp: /var/www/app_three/current
