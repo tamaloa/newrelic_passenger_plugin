@@ -37,3 +37,8 @@ https://github.com/barttenbrinke/munin-plugins-rails
 The Agent was built using the example provided by newrelic:
 https://github.com/newrelic-platform/newrelic_example_plugin
 
+For contributing code:
+
+  * @mattclegg - improving config template (2016)
+  * @Mahaswami - allow passenger 5 as config option (2015)
+  * @Matthew - fixing regex to be ruby 1.8.7 compatible (2013)
