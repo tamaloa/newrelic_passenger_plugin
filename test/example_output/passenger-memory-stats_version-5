@@ -1,0 +1,32 @@
+Version: 5.0.26
+Date   : 2016-03-18 16:34:28 +0100
+
+---------- Apache processes -----------
+PID    PPID   VMSize     Private  Name
+---------------------------------------
+32331  1      98.0 MB    0.4 MB   /usr/sbin/apache2 -k start
+32335  32331  97.2 MB    0.7 MB   /usr/sbin/apache2 -k start
+32370  32331  1978.6 MB  3.0 MB   /usr/sbin/apache2 -k start
+32371  32331  1914.6 MB  2.7 MB   /usr/sbin/apache2 -k start
+### Processes: 4
+### Total private dirty RSS: 6.77 MB
+
+
+-------- Nginx processes --------
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+------ Passenger processes ------
+PID    VMSize     Private   Name
+---------------------------------
+3369   1100.6 MB  109.5 MB  Passenger RubyApp: /var/www/stage-qualle/current (staging)
+8432   680.2 MB   128.8 MB  Passenger RubyApp: /var/www/stage-lett/current (staging)
+9986   681.0 MB   129.5 MB  Passenger RubyApp: /var/www/stage-keit-boc/current (staging)
+20905  680.2 MB   126.7 MB  Passenger RubyApp: /var/www/stage-elmex/current (staging)
+24060  681.5 MB   128.3 MB  Passenger RubyApp: /var/www/stage-ipib/current (staging)
+32336  434.3 MB   1.0 MB    Passenger watchdog
+32339  1833.2 MB  5.2 MB    Passenger core
+32346  442.7 MB   1.1 MB    Passenger ust-router
+### Processes: 8
+### Total private dirty RSS: 630.25 MB

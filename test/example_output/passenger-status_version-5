@@ -1,0 +1,41 @@
+Version : 5.0.26
+Date    : 2016-03-18 16:34:57 +0100
+Instance: PvwrZgd0 (Apache/2.2.22 (Ubuntu) Phusion_Passenger/5.0.26)
+
+----------- General information -----------
+Max pool size : 6
+App groups    : 5
+Processes     : 5
+Requests in top-level queue : 0
+
+----------- Application groups -----------
+/var/www/stage-elmex/current (staging):
+  App root: /var/www/stage-elmex/current
+  Requests in queue: 0
+  * PID: 20905   Sessions: 0       Processed: 1       Uptime: 20m 51s
+    CPU: 0%      Memory  : 126M    Last used: 20m 51s ago
+
+/var/www/stage-qualle/current (staging):
+  App root: /var/www/stage-qualle/current
+  Requests in queue: 0
+  * PID: 3369    Sessions: 0       Processed: 1       Uptime: 43m 29s
+    CPU: 0%      Memory  : 109M    Last used: 43m 29s ago
+
+/var/www/stage-lett/current (staging):
+  App root: /var/www/stage-lett/current
+  Requests in queue: 0
+  * PID: 8432    Sessions: 0       Processed: 1       Uptime: 14m 51s
+    CPU: 0%      Memory  : 128M    Last used: 14m 51s ago
+
+/var/www/stage-ipib/current (staging):
+  App root: /var/www/stage-ipib/current
+  Requests in queue: 0
+  * PID: 24060   Sessions: 0       Processed: 1       Uptime: 26m 47s
+    CPU: 0%      Memory  : 128M    Last used: 26m 47s ago
+
+/var/www/stage-keit-boc/current (staging):
+  App root: /var/www/stage-keit-boc/current
+  Requests in queue: 0
+  * PID: 9986    Sessions: 0       Processed: 1       Uptime: 13m 31s
+    CPU: 0%      Memory  : 129M    Last used: 13m 31s ago
+
