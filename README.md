@@ -27,7 +27,8 @@ as well as the version used. Make sure you determine the right version and paths
 
 To run the agent as daemon process in the background the daemons gem was included. This provides the usual start/stop/status via PID file stuff.
 Run `sudo ./newrelic_passenger_agent.daemon start --ontop` to check if daemonizing works in general and every thing is set up correctly (the agent should report several values).
-To start the daemon run `sudo ./newrelic_passenger_agent.daemon start`
+To start the daemon run `sudo ./newrelic_passenger_agent.daemon start`. The daemon command takes the usual "start", "stop", "restart", "status" arguments. Further documentation
+can be found on the [daemons gem page](https://github.com/thuehlinger/daemons).
 
 ## People to thank
 
