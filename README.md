@@ -3,6 +3,13 @@
 A simple Newrelic agent which collects stats from Phusion Passenger by using the built in status commands.
 [![Build Status](https://travis-ci.org/tamaloa/newrelic_passenger_plugin.png?branch=master)](https://travis-ci.org/tamaloa/newrelic_passenger_plugin) tested on all major C ruby versions.
 
+## Requirements
+
+The current version of this gem is tested against ruby 2.0 and upwards. For a version compatible with ruby 1.8.7 and 1.9 
+check out the [ruby1.8+1.9 tag](https://github.com/tamaloa/newrelic_passenger_plugin/tree/ruby1.8+1.9).
+
+Passenger is obviously required - especially the path to the `passenger-status` and `passenger-memory-stats` commands has
+to be set in the config (see instructions below).
 
 ## Passenger Agent Installation
 
