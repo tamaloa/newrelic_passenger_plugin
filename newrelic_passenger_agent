@@ -31,7 +31,7 @@ module PassengerAgent
     # This method is called on initializing the Agent and should check configuration and select version depending regexes
     #
     def setup_metrics
-      valid_passenger_versions = [3, 4]
+      valid_passenger_versions = [3, 4, 5]
 
       raise ConfigurationError, "passenger_version config variable must be set" unless defined?(passenger_version)
       raise ConfigurationError, "Passenger version must be one of #{valid_passenger_versions}" unless valid_passenger_versions.include?(passenger_version)
