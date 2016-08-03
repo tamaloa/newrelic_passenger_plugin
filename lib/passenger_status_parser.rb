@@ -8,17 +8,17 @@ class PassengerStatusParser
 
     @matches[:processes_max] = /max\s+=\s+(\d+)/ if @passenger_version.eql?(3)
     #Max pool size : 6
-    @matches[:processes_max] = /Max pool size\s+:\s+(\d+)/ if @passenger_version.eql?(4)
+    @matches[:processes_max] = /Max pool size\s+:\s+(\d+)/ if [4,5].include? @passenger_version
 
 
     @matches[:processes_running] = /count\s+=\s+(\d+)/ if @passenger_version.eql?(3)
     #Processes     : 6
-    @matches[:processes_running] = /Processes\s+:\s+(\d+)/ if @passenger_version.eql?(4)
+    @matches[:processes_running] = /Processes\s+:\s+(\d+)/ if [4,5].include? @passenger_version
 
 
     @matches[:queue_waiting] = /Waiting on global queue:\s+(\d+)/ if @passenger_version.eql?(3)
     #Requests in top-level queue : 0
-    @matches[:queue_waiting] = /Requests in top-level queue\s+:\s+(\d+)/ if @passenger_version.eql?(4)
+    @matches[:queue_waiting] = /Requests in top-level queue\s+:\s+(\d+)/ if [4,5].include? @passenger_version
   end
 
 
